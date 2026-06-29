@@ -51,6 +51,11 @@ clone_repo_commit \
 	Flanterm \
 	e231edd0e508022521c8233392aabc8ce5c9b242
 
+clone_repo_commit \
+	https://github.com/charlesnicholson/nanoprintf.git \
+	nanoprintf \
+	f25230efb5882126b77337c3037d5944a60a1b3c
+
 touch .deps-obtained
 
 printf "\nDependencies obtained successfully.\n"

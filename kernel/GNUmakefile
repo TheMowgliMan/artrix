@@ -82,15 +82,17 @@ override CFLAGS += \
     -mno-sse \
     -mno-sse2 \
     -mno-red-zone \
-    -mcmodel=kernel
+    -mcmodel=kernel \
 
 # Internal C preprocessor flags that should not be changed by the user.
 override CPPFLAGS := \
     -I src \
     -I limine-protocol/include \
 	-I Flanterm/src \
+	-I nanoprintf \
     -isystem freestanding-c-hdrs/include \
     $(CPPFLAGS) \
+	-DLOADER_LIMINE \
     -MMD \
     -MP
 
