@@ -7,6 +7,8 @@
 #include <flanterm.h>
 #include <flanterm_backends/fb.h>
 
+#include <archinit.h>
+
 #include <stdint.h>
 #include <stddef.h>
 #include <stdbool.h>
@@ -19,7 +21,7 @@ void kmain(void) {
 
 	init_logging(ft_ctx);
 
-	kprintf("%s, %d %s! \r\n", "Hello", 12, "worlds");
+	early_cpu_setup();
 	
     // We're done, just hang...
     assert((1 == 1), "you have somehow escaped the operating system...");

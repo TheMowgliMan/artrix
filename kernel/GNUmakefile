@@ -45,6 +45,8 @@ NASMFLAGS := -g
 # User controllable linker flags. We set none by default.
 LDFLAGS :=
 
+TARGET := x86_64
+
 # Ensure the dependencies have been obtained.
 ifneq ($(filter-out clean distclean,$(or $(MAKECMDGOALS),default)),)
     ifeq ($(wildcard .deps-obtained),)
@@ -90,6 +92,7 @@ override CPPFLAGS := \
     -I limine-protocol/include \
 	-I Flanterm/src \
 	-I nanoprintf \
+	-I arch/$(TARGET) \
     -isystem freestanding-c-hdrs/include \
     $(CPPFLAGS) \
 	-DLOADER_LIMINE \
@@ -113,7 +116,7 @@ override LDFLAGS += \
 
 # Use "find" to glob all *.c, *.S, and *.asm files in the tree and obtain the
 # object and header dependency file names.
-override SRCFILES := $(shell find -L src cc-runtime/src Flanterm/src -type f 2>/dev/null | LC_ALL=C sort)
+override SRCFILES := $(shell find -L src arch/$(TARGET) cc-runtime/src Flanterm/src -type f 2>/dev/null | LC_ALL=C sort)
 override CFILES := $(filter %.c,$(SRCFILES))
 override ASFILES := $(filter %.S,$(SRCFILES))
 override NASMFILES := $(filter %.asm,$(SRCFILES))
